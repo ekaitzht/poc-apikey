@@ -20,7 +20,6 @@ function getQueryString(url) {
 function getAuthHeader(httpMethod, requestUrl, requestBody) {
     var CLIENT_KEY = 'clientkey';
     var SECRET_KEY = 'SECRET_KEY';
-    var AUTH_TYPE = 'HMAC-SHA512';
 
     var requestPath = getPath(requestUrl);
     var queryString = getQueryString(requestUrl);
@@ -30,12 +29,9 @@ function getAuthHeader(httpMethod, requestUrl, requestBody) {
         requestBody = JSON.stringify(requestBody);
     }
 
-    console.log(requestPath);
-    console.log(httpMethod);
-
-    var requestData = [httpMethod, requestPath].join('\n');
-    console.log(requestData);
-    var hmacDigest = CryptoJS.enc.Hex.stringify(CryptoJS.HmacSHA512(requestData, SECRET_KEY));
+    var requestData = [httpMethod, requestPath].join('');
+    console.log('Signing this: ' + requestData);
+    var hmacDigest = CryptoJS.enc.Base64.stringify(CryptoJS.HmacSHA512(requestData, SECRET_KEY));
     var authHeader = `APICENTRAL ${CLIENT_KEY}:${hmacDigest}`;
     return authHeader;
 }

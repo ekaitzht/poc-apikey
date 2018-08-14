@@ -27,7 +27,6 @@ router.post('/', function(req, res) {
 
 // RETURNS ALL THE USERS IN THE DATABASE
 router.get('/', function(req, res) {
-    console.log(req.headers);
     let hmac512 = req.headers.authorization.split(':').pop();
     let requestedData = [req.method, req.originalUrl].join('');
 
