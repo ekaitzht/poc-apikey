@@ -1,21 +1,19 @@
-# nodejs-restful-api
-![RESTful API design with Node.js](https://cdn-images-1.medium.com/max/2000/1*jjYC9tuf4C3HkHCP5PcKTA.jpeg "RESTful API design with Node.js")
+This project shows a JWT authentication system and API Key + Secret system.
 
-How to create a RESTful CRUD API using Nodejs?
+To test API Key + Secret you need:
 
-This tutorial will demo how to set up a bare bones 
-API using mongodb as the database.
+1. npm install
+2. npm run start
+3. Add postman-apikey-secret-pre-request.js to a Pre-request postman 
+script. More info: https://www.getpostman.com/docs/v6/postman/scripts/pre_request_scripts
+5. Add header Authorization with {{hmacAuthHeader}} in postman
+4. Execute GET http://localhost/users in postman.
 
-It consist of a User model and controller. The model
-defines the data, and the controller will contain all 
-the business logic needed to interact with the database. 
+To test JWT:
 
-It has a db file which will be used to
-connect the app to the database, and an app file used
-for bootstrapping the application itself.
-
-The server file is used to spin up the server and tells the
-app to listen on a specific port.
-
-Full tutorial can be found at:
-https://hackernoon.com/restful-api-design-with-node-js-26ccf66eab09#.s5l66zyeu
+1. npm install
+2. npm run start
+3. Add postman-jwt-pre-request.js to postman to a Pre-request postman 
+script. 
+5. Add header Authorization with {{hmacAuthHeader}} in postman
+4. Execute GET http://localhost/users in postman.
