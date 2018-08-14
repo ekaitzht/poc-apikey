@@ -7,7 +7,7 @@ router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
 var User = require("./User");
 
-// RETURNS ALL THE USERS IN THE DATABASE API KEY HMAC Authentication
+// Verification with API Key + Secret
 router.get("/", function(req, res) {
   let hmac512 = req.headers.authorization.split(":").pop();
   let requestedData = [req.method, req.originalUrl].join("");
@@ -32,12 +32,12 @@ router.get("/", function(req, res) {
   }
 });
 
-// RETURNS ALL THE USERS IN THE DATABASE API KEY HMAC Authentication
+// Verification with JWT
 router.get("/jwt", function(req, res) {
 
-    console.log(req.headers);
+    var token = req.headers['authorization']
+    console.log(token);
 
-    /*
     if (!token) return res.status(401).send({ auth: false, message: 'No token provided.' });
     
     jwt.verify(token, 'SECRET_KEY', function(err, decoded) {
@@ -45,7 +45,7 @@ router.get("/jwt", function(req, res) {
       
       res.status(200).send(decoded);
     });
-    */
+
 
 });
 
